@@ -1,0 +1,10 @@
+@charset "UTF-8";
+body {
+	background-image: linear-gradient(
+	to right,
+	rgba(255, 255, 255, 0),
+	rgba(255, 255, 255, 1)),
+	url("image/background.jpg");
+	background-repeat:no-repeat;
+	background-size:contain;
+}
