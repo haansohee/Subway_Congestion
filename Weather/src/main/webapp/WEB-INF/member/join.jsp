@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file ="../header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
 	}
 	
 	function goHome() {
-		location.href="../index.jsp";
+		location.href='home.do';
 	}
 </script>
 
@@ -52,7 +53,7 @@
 
 <div class="col align-self-center">
 
-<form name = "frm" class="row g-3" action="./join_Action.jsp" onsubmit="return checkValue()">
+<form name = "frm" class="row g-3" action="join.do" method = "post" onsubmit="return checkValue()">
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">ID</label>
     <input type="text" class="form-control" id="inputEmail4" name="userID">
@@ -100,5 +101,11 @@
 </form>
 </div>
 </head>
+<!--  아이디 중복 검사 -->
+<c:if test="${joinResult == 0 }">
+	<script>
+		alert("아이디가 중복됩니다.");
+	</script>
+</c:if>
 </body>
 </html>
