@@ -50,7 +50,7 @@
 <body>
 
 <h3 style = "text-align:center; margin-top:10px;"> Join the (플젝이름) </h3>
-
+<div class="container" style="margin-top:5em;">
 <div class="col align-self-center">
 
 <form name = "frm" class="row g-3" action="join.do" method = "post" onsubmit="return checkValue()">
@@ -99,6 +99,7 @@
    <button type="submit" class="btn btn-secondary" onclick = "goHome()">Cancle</button>
   </div>
 </form>
+</div>
 </div>
 </head>
 <!--  아이디 중복 검사 -->

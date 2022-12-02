@@ -49,12 +49,21 @@
   </servlet-mapping>
   
   <servlet>
-  	<servlet-name> checkBoard </servlet-name>
-  	<servlet-class> com.exam.controller.CheckBoardController </servlet-class>
+  	<servlet-name> CheckAllBoard </servlet-name>
+  	<servlet-class> com.exam.controller.CheckAllBoardController </servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name> checkBoard </servlet-name>
-  	<url-pattern> /checkBoard.do </url-pattern>
+  	<servlet-name> CheckAllBoard </servlet-name>
+  	<url-pattern> /CheckAllBoard.do </url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name> CheckMyLocBoard </servlet-name>
+  	<servlet-class> com.exam.controller.CheckMyLocBoardController </servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name> CheckMyLocBoard </servlet-name>
+  	<url-pattern> /CheckMyLocBoard.do </url-pattern>
   </servlet-mapping>
   
   

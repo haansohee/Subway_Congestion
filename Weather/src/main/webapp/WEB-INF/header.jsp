@@ -48,8 +48,8 @@ System.out.println(mDTO.getUserID());
         <a class="nav-link" href="join.do">Join</a>
 <%	} else {
 %>		
-		<a class="nav-link disabled"> <%= userName %> 님, 안녕하세요. </a>
 		<a class="nav-link" href="logout.do">Logout</a>
+		<a class="nav-link disabled"> <%= userName %> 님, 안녕하세요. </a>
 <% } %>
         <a class="nav-link disabled"> :) </a>
       </div>

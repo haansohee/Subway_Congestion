@@ -105,7 +105,7 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();		
 			
 			if(rs.next()) {
-				if(mDTO.getUserPassword().equals(rs.getString("userID"))) {
+				if(mDTO.getUserID().equals(rs.getString("userID"))) {
 					return 0;  // 중복이면 0 반환 
 				} else {
 					return 1;
@@ -168,4 +168,33 @@ public class MemberDAO {
 		}
 		return null;
 	}
+	
+	// 사용자의 지역 이름 가져오기
+		public String findUserCity(String userID) {
+			System.out.println(userID);
+			con = this.getConnection();
+			StringBuffer query = new StringBuffer();
+			query.append("select userCity from member_table where userID = ?");
+			System.out.println(query.toString());
+			String userCity = null;
+			
+			try {
+				pstmt = con.prepareStatement(query.toString());
+				pstmt.setString(1, userID);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					System.out.println(rs.getString("userCity"));
+					userCity = rs.getString("userCity");
+					return userCity;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(con, pstmt, rs);
+			}
+			System.out.println(userCity);
+			return userCity;
+			
+		}
 }

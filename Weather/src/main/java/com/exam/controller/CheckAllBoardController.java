@@ -7,10 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class LogoutController extends HttpServlet {
-
+public class CheckAllBoardController extends HttpServlet {
+//	private static final long serialVersionUID = 1L;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
@@ -21,13 +21,8 @@ public class LogoutController extends HttpServlet {
 		process(req, resp);
 	}
 	
-	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		session.invalidate();  // 현재 세션의 모든 정보 제거
-		
-		RequestDispatcher rd = req.getRequestDispatcher("home.do");
+	private void process (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/board/checkAll.jsp");
 		rd.forward(req, resp);
 	}
-
 }
-

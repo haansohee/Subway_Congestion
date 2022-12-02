@@ -26,7 +26,8 @@
 		}
 	}
 </script>
-
+<h3 style = "text-align:center; margin-top:10px;"> Login the (플젝이름) </h3>
+<div class="container" style="margin-top: 5em;">
 <form name = "frm" action="login.do" method="post" onsubmit="return checkValue()" >
   <div class="row mb-3">
     <label for="inputEmail3" class="col-sm-2 col-form-label">ID</label>
@@ -42,6 +43,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
+</div>
 
 
 <c:if test="${loginResult == 1 }">

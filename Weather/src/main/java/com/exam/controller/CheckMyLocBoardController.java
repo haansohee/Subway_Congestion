@@ -7,27 +7,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-public class LogoutController extends HttpServlet {
+import org.apache.catalina.connector.Response;
 
+import com.exam.DAO.CityLocationDAO;
+import com.exam.DTO.CityLocationDTO;
+import com.exam.DTO.MemberDTO;
+
+public class CheckMyLocBoardController extends HttpServlet {
+//	private static final long serialVersionUID = 1L;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String command = req.getParameter("command");
 		process(req, resp);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		process(req, resp);
 	}
 	
 	private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		session.invalidate();  // 현재 세션의 모든 정보 제거
-		
-		RequestDispatcher rd = req.getRequestDispatcher("home.do");
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/board/checkMyLoc.jsp");
 		rd.forward(req, resp);
 	}
 
 }
-

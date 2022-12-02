@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
 			req.setAttribute("loginResult", loginResult);
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionID", userID);
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/main.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/index.jsp");
 			System.out.println(userID);
 			rd.forward(req, resp);
 		} else {
