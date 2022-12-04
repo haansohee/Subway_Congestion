@@ -1,3 +1,5 @@
+package com.exam.API;
+
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -14,8 +16,15 @@ import org.json.simple.parser.ParseException;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class ApiExplorer {
-    public static void main(String[] args) throws IOException, ParseException {
+public class WeatherAPI {
+//    public static void main(String[] args) throws IOException, ParseException {
+//    	getAPI();
+//    }
+	
+	static public ArrayList getCategory = new ArrayList();
+	static public ArrayList getValue = new ArrayList();
+    
+    public static void getAPI(String lat, String lon) throws IOException, ParseException {
     	// 오늘 날짜 받아오기 
     	Date date = new Date();
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -24,8 +33,8 @@ public class ApiExplorer {
     	// 초단기실황조회.
     	String apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
     	String serviceKey = "tjD5lYUAzevWJitnYN0uROhvyqlGc4NcgUCPWef%2F%2FfI3sAEhPEb%2BzxSzms8ocoznYQ9UsAAGaUXQlvlcVk%2Fksw%3D%3D";
-    	String nx = "60";  // 위도 
-    	String ny = "127"; // 경도 
+    	String nx = lat;  // 위도 
+    	String ny = lon; // 경도 
     	String baseDate = sdf.format(date);  // 조회하고 싶은 날짜
     	String baseTime = "1500";  // 조회하고 싶은 시간 
     	String type = "json";  // 타입 
@@ -102,11 +111,10 @@ public class ApiExplorer {
 //        PTY	강수형태	코드값
 //        VEC	풍향	deg
 //        WSD	풍속	m/s
-    
     }
     
     public static ArrayList<String> findCategory(JSONArray parse_item) {
-    	ArrayList getCategory = new ArrayList();
+//    	ArrayList getCategory = new ArrayList();
     	String category = null;
     	
     	try {
@@ -164,7 +172,7 @@ public class ApiExplorer {
     }
     
     public static ArrayList<String> findValue(JSONArray parse_item) {
-    	ArrayList getValue = new ArrayList();
+//    	ArrayList getValue = new ArrayList();
     	String value = null;
     	
     	try {

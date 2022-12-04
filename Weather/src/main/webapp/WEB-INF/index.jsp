@@ -46,7 +46,7 @@
 <% } else { %>
 
 		<button class="btn btn-outline-success" type="button" onclick = "location.href='CheckAllBoard.do'"> 전국 날씨 확인하기 </button>
-  		<button class="btn btn-outline-warning" type="button" onclick = "location.href='CheckMyLocBoard.do?comman'"> 내 위치 날씨 확인하기 </button>
+  		<button class="btn btn-outline-warning" type="button" onclick = "location.href='CheckMyLocBoard.do?command=checkMyLoc'"> 내 위치 날씨 확인하기 </button>
   		
 <% }%>
   		

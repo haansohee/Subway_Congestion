@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.exam.DTO.CityLocationDTO;
 import com.exam.DTO.MemberDTO;
@@ -72,14 +73,14 @@ public class CityLocationDAO {
 	}
 	
 	// 사용자의 지역 위경도 가져오기
-	public String findCityLoc(String userCity) {
+	public ArrayList<String> findCityLoc(String userCity) {
 		con = this.getConnection();
 		StringBuffer query = new StringBuffer();
-		String location = null;  // 0번째 : 위도, 1번째 : 경도 
+		ArrayList location = new ArrayList();  // 0번째 : 위도, 1번째 : 경도 
 		
 		System.out.println("회원의 지역 : " + userCity);
 		
-		query.append("select latitude from city_table where userCity = ?");
+		query.append("select latitude, longitude from city_table where userCity = ?");
 		
 		
 		try {
@@ -88,8 +89,9 @@ public class CityLocationDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
-				location = rs.getString("latitude");
+			while(rs.next()) {
+				location.add(0, rs.getString("latitude"));
+				location.add(1, rs.getString("longitude"));
 				
 				return location;
 			}
