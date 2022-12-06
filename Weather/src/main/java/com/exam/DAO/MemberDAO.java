@@ -1,5 +1,6 @@
 package com.exam.DAO;
 import java.sql.*;
+
 import com.exam.DTO.MemberDTO;
 
 public class MemberDAO {
@@ -65,12 +66,7 @@ public class MemberDAO {
 	
 	public int join(MemberDTO mDTO) {
 		con = this.getConnection();
-		StringBuffer query = new StringBuffer();
-		
-		if (checkID(mDTO) == 0) {  // 중복 체크 
-			return 0;
-		}
-		
+		StringBuffer query = new StringBuffer();		
 		
 		query.append("insert into member_table values (?, ?, ?, ?, ?)");
 		
@@ -93,23 +89,23 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public int checkID(MemberDTO mDTO) {
+	public int checkID(String userID) {
 		con = this.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("select userID from member_table where userID = ?");
 		
 		try {
 			pstmt = con.prepareStatement(query.toString());
-			pstmt.setString(1, mDTO.getUserID());
+			pstmt.setString(1, userID);
+			
+			System.out.println(userID);
 			
 			rs = pstmt.executeQuery();		
 			
 			if(rs.next()) {
-				if(mDTO.getUserID().equals(rs.getString("userID"))) {
-					return 0;  // 중복이면 0 반환 
-				} else {
-					return 1;
-				}
+				return 0;  // 있다면 중복이므로 
+			} else {
+				return 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +128,7 @@ public class MemberDAO {
 			
 			if (rs.next()) {
 				if(rs.getString("userPassword").equals(userPassword)) {
-					return 1;  // 입력받은 아이디 값이 DB에 저장된 데이터라면 1 return
+					return 1;  // 비밀번호 맞았을 경우 
 					
 					} else {
 						return 0;  // 비밀번호 틀렸을 경우 
@@ -175,7 +171,7 @@ public class MemberDAO {
 			con = this.getConnection();
 			StringBuffer query = new StringBuffer();
 			query.append("select userCity from member_table where userID = ?");
-			System.out.println(query.toString());
+//			System.out.println(query.toString());
 			String userCity = null;
 			
 			try {

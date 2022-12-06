@@ -34,13 +34,18 @@ public class JoinController extends HttpServlet {
 		MemberDAO mDAO = MemberDAO.getInstance();
 		MemberDTO mDTO = new MemberDTO();
 		
-		mDTO.setUserID(userID);
-		mDTO.setUserPassword(userPassword);
-		mDTO.setUserName(userName);
-		mDTO.setUserEmail(userEmail);
-		mDTO.setUserCity(userCity);
 		
+		if(mDAO.checkID(userID) != 0) {
+			
+			mDTO.setUserID(userID);
+			mDTO.setUserPassword(userPassword);
+			mDTO.setUserName(userName);
+			mDTO.setUserEmail(userEmail);
+			mDTO.setUserCity(userCity);
+		}
+
 		int joinResult = mDAO.join(mDTO);
+		System.out.println(joinResult);
 		
 		if (joinResult == 1) {
 			req.setAttribute("joinResult", joinResult);

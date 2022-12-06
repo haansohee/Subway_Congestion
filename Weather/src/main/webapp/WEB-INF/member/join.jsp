@@ -11,6 +11,7 @@
 <script type="text/javascript">
 	// 아이디와 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
+		
 		if (!frm.userID.value) {
 			alert("아이디를 입력하세요.");
 			frm.userID.focus();
@@ -95,8 +96,9 @@
   </div>
   <div class="col-12">
   <!-- <input type = "submit" value = "sign in"> -->
-   <button type="submit" class="btn btn-primary">Sign in</button>
-   <button type="submit" class="btn btn-secondary" onclick = "goHome()">Cancle</button>
+   <button type="submit" class="btn btn-primary" onclick = "checkValue()">Sign in</button>
+   
+   <button type="button" class="btn btn-secondary" onclick = "goHome()">Cancle</button>
   </div>
 </form>
 </div>
@@ -104,9 +106,9 @@
 </head>
 <!--  아이디 중복 검사 -->
 <c:if test="${joinResult == 0 }">
-	<script>
-		alert("아이디가 중복됩니다.");
-	</script>
+<script type="text/javascript">
+	alert('중복되는 아이디입니다.');
+</script>
 </c:if>
 </body>
 </html>

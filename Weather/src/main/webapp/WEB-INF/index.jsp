@@ -37,16 +37,15 @@
     <div class="col">
      <div class="" style="margin-top:400px;">  
      	<div class="d-grid gap-2 col-6 mx-auto">
+     	<button class="btn btn-outline-success" type="button" onclick = "location.href='CheckAllBoard.do'"> 전국 날씨 확인하기 </button>
      	
 <% if (userID == null) { %>
-
-		<button class="btn btn-outline-success" type="button" onclick = "btn()"> 전국 날씨 확인하기 </button>
+		
   		<button class="btn btn-outline-warning" type="button" onclick = "btn()"> 내 위치 날씨 확인하기 </button>
   		
 <% } else { %>
-
-		<button class="btn btn-outline-success" type="button" onclick = "location.href='CheckAllBoard.do'"> 전국 날씨 확인하기 </button>
-  		<button class="btn btn-outline-warning" type="button" onclick = "location.href='CheckMyLocBoard.do?command=checkMyLoc'"> 내 위치 날씨 확인하기 </button>
+		
+  		<button class="btn btn-outline-warning" type="button" onclick = "location.href='CheckMyLocBoard.do'"> 내 위치 날씨 확인하기 </button>
   		
 <% }%>
   		
@@ -59,7 +58,7 @@
 	<div class="col" style="margin-left:100px;">
 	    <div class="" style="margin-top:200px; margin-right:100px;">
     	  	<div class="card" style="width: 18rem;">
-  			<img src="WEB-INF/image/nomal.png" class="card-img-top" alt="...">
+  			<img src="/Weather/image/normal.png" class="card-img-top" alt="...">
   				<div class="card-body">
     			<h5 class="card-title">비회원</h5>
     			<p class="card-text"> 로그인이 필요합니다. </p>
@@ -74,7 +73,7 @@
 	    <div class="col" style="margin-left:100px;">
 	    <div class="" style="margin-top:200px; margin-right:100px;">
     	  	<div class="card" style="width: 18rem;">
-  			<img src="https://item.kakaocdn.net/do/305a7ceb81d07db332a5e91691a1707d26397d82c8691bdabf557d1536959d9c" class="card-img-top" alt="..."/>
+  			<img src="/Weather/image/test.jpg" class="card-img-top" alt="..."/>
   				<div class="card-body">
     			<h5 class="card-title"> <%= userName %> 님, 안녕하세요. </h5>
     			<p class="card-text">

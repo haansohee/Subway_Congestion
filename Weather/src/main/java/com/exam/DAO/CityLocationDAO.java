@@ -103,5 +103,29 @@ public class CityLocationDAO {
 		 
 		return location;
 	}
+	
+
+	public ArrayList<String> findCity() {
+		con = this.getConnection();
+		StringBuffer query = new StringBuffer();
+		query.append("select userCity from city_table");
+		ArrayList city = new ArrayList();
+		int i = 0;
+		try {
+			pstmt = con.prepareStatement(query.toString());
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				city.add(i, rs.getString("userCity"));
+				i++;
+			}
+			return city;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.close(con, pstmt, rs);
+		}
+		return city;
+	}
 
 }

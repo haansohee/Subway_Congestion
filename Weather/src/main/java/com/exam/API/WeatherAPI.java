@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,17 +19,26 @@ import java.io.IOException;
 
 public class WeatherAPI {
 //    public static void main(String[] args) throws IOException, ParseException {
-//    	getAPI();
+//    	getAPI("60", "127");
 //    }
 	
-	static public ArrayList getCategory = new ArrayList();
-	static public ArrayList getValue = new ArrayList();
+	static public ArrayList<String> category;
+	static public ArrayList<String> value;
     
     public static void getAPI(String lat, String lon) throws IOException, ParseException {
     	// 오늘 날짜 받아오기 
     	Date date = new Date();
+    	LocalTime now = LocalTime.now();
+    	int hour = now.getHour() - 1;
+    	String bHour = Integer.toString(hour) + "40";
+    	
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-    	System.out.println(sdf.format(date));
+//    	System.out.println(sdf.format(date));
+    	
+    	if (hour < 10) {
+    		bHour = null;
+    		bHour = "0" + Integer.toString(hour) + "40";
+    	}
     	
     	// 초단기실황조회.
     	String apiURL = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst";
@@ -36,9 +46,11 @@ public class WeatherAPI {
     	String nx = lat;  // 위도 
     	String ny = lon; // 경도 
     	String baseDate = sdf.format(date);  // 조회하고 싶은 날짜
-    	String baseTime = "1500";  // 조회하고 싶은 시간 
+    	String baseTime = bHour;   // 조회하고 싶은 시간 
     	String type = "json";  // 타입 
-    	String numberOfRows = "1";  // 한 페이지 결과 수
+    	String numberOfRows = "1000";  // 한 페이지 결과 수
+    	
+//    	System.out.println(baseTime);
     	
     	StringBuilder urlBuilder = new StringBuilder(apiURL);
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey);
@@ -47,6 +59,7 @@ public class WeatherAPI {
         urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); 
         urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode(nx, "UTF-8")); 
         urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode(ny, "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numberOfRows", "UTF-8") + "=" + URLEncoder.encode(numberOfRows, "UTF-8")); 
         
         /*
@@ -91,16 +104,19 @@ public class WeatherAPI {
         JSONObject parse_items = (JSONObject)parse_body.get("items");
         JSONArray parse_item = (JSONArray)parse_items.get("item");
         
-        ArrayList<String> getCategory = findCategory(parse_item);
-        ArrayList<String> getValue = findValue(parse_item);
+        category = findCategory(parse_item);
+        value = findValue(parse_item);
         
-        for (int i = 0; i < getCategory.size(); i++) {
-        	System.out.println(getCategory.get(i) + " : " + getValue.get(i));
-        }
+//        for (int i = 0; i < category.size(); i++) {
+//        	System.out.println(category.get(i) + " : " + value.get(i));
+//        }
         
         System.out.println("-----------------------");
         
-        System.out.println(parse_item);
+        for (int i = 0; i < parse_item.size(); i++) {
+        	System.out.println(parse_item);
+        	System.out.println(parse_item.get(i));
+        }
         
         
 //        T1H	기온	℃
@@ -112,80 +128,43 @@ public class WeatherAPI {
 //        VEC	풍향	deg
 //        WSD	풍속	m/s
     }
-    
+//    
     public static ArrayList<String> findCategory(JSONArray parse_item) {
-//    	ArrayList getCategory = new ArrayList();
-    	String category = null;
+    	ArrayList categoryList = new ArrayList();
+    	String getCategory = null;
     	
     	try {
     	 for (int i = 0; i <parse_item.size(); i++) {
+    		 System.out.println(parse_item.size());
          	JSONObject parse_test = (JSONObject)parse_item.get(i);
          	
-         	category = (String)parse_test.get("category");
-         	getCategory.add(i, category);         	
-   
-         	
-         	switch(category) {
-         	case "T1H":
-         		getCategory.set(i,  "기온");
-         		break;
-         		
-         	case "RN1":
-         		getCategory.set(i, "1시간 강수량");
-         		break;
-         		
-         	case "UUU":
-         		getCategory.set(i, "동서 바람 성분");
-         		break;
-         		
-         	case "VVV":
-         		getCategory.set(i, "남북 바람 성분");
-         		break;
-         		
-         	case "REH":
-         		getCategory.set(i, "습도");
-         		break;
-         		
-         	case "PTY":
-         		getCategory.set(i, "강수 형태");
-         		break;
-         		
-         	case "VEC":
-         		getCategory.set(i, "풍향");
-         		break;
-         		
-         	case "WSD":
-         		getCategory.set(i, "풍속");
-         		break;
-         		
-         	default : break;
-         		}
-         
+         	getCategory = (String)parse_test.get("category");
+         	categoryList.add(i, getCategory);  
     		}
     	}catch (NullPointerException e) {
     		 e.printStackTrace();
     		 System.out.println("에ㄹ~");
     	 }
         
-    	System.out.println("category : " + getCategory);
-    	return getCategory;
+    	System.out.println("category : " + categoryList);
+    	return categoryList;
     }
     
     public static ArrayList<String> findValue(JSONArray parse_item) {
-//    	ArrayList getValue = new ArrayList();
+    	ArrayList valueList = new ArrayList();
     	String value = null;
     	
     	try {
     		for (int i = 0; i < parse_item.size(); i++) {
     			JSONObject parse_test = (JSONObject)parse_item.get(i);
     			value = (String)parse_test.get("obsrValue");
-    			getValue.add(i, value);
+    			valueList.add(i, value);
     			value = null;
     			}
     		} catch (Exception e) {
     			e.printStackTrace();
     		}
-    	System.out.println("value " + getValue);
-    	return getValue;
+    	System.out.println("value " + valueList);
+    	return valueList;
     }
 }

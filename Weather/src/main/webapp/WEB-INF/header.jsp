@@ -32,15 +32,14 @@ System.out.println(mDTO.getUserID());
 
 <nav class="navbar navbar-expand-lg bg-light" style = "margin-top:5px;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="home.do" style = "margin-left:50px;">23Line(플젝이름)</a>
+    <a class="navbar-brand" href="home.do" style = "margin-left:50px;">Weather Information</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="home.do">Home</a>
-        <a class="nav-link" href="<%=application.getContextPath()%>/board/notice.jsp">notice</a> <%--  "<%=application.getContextPath()%>/include/top.jsp" --%>
-        <a class="nav-link" href="<%=application.getContextPath()%>/board/QnA.jsp">Q&A</a>
+        <a class="nav-link" href="notice.do">notice</a> <%--  "<%=application.getContextPath()%>/include/top.jsp" --%>
 <%
 	if(userID == null) {
 %>
