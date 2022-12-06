@@ -50,11 +50,10 @@
 	
 	WeatherAPI api = new WeatherAPI();  // API 
 	
-	String xLat = cityLoc.get(0);
+	String xLat = cityLoc.get(0);  // 지역의 x, y 좌표를 가져와서 
 	String yLon = cityLoc.get(1);
 	
-	api.getAPI(xLat, yLon);
-	/* api.getAPI(xLat, yLon); */
+	api.getAPI(xLat, yLon); // 넘겨주기
 	
 	System.out.println(xLat + yLon);
 	
