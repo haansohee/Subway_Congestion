@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.exam.DAO.*" %>
@@ -13,18 +15,25 @@
 </head>
 
 <body>
+<%
+	Date date = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("M월 d일");
+	
+	LocalTime now = LocalTime.now();
+	int hour = now.getHour() - 1;
+%>
 <br><hr>
 <figure class="text-center">
   <figcaption class="blockquote-footer">
    안녕하세요.
   </figcaption>
   <blockquote class="blockquote">
-    <p>오늘 전국 날씨 </p>
+    <p> <%= sdf.format(date) %> 전국 날씨 &nbsp; <%= hour %>:40 KST 기준 </p>
     
   </blockquote>
 </figure>
 
-<%
+<%	
 	CityLocationDTO cDTO = new CityLocationDTO();
 	CityLocationDAO cDAO = CityLocationDAO.getInstance();
 	
@@ -33,7 +42,7 @@
 	
 	System.out.println(city);  // [강원도, 경기도, 경상남도, 경상북도, 광주, 대구, 대전, 부산, 서울, 세종, 울산, 인천, 전라남도, 전라북도, 제주도, 충청남도, 충청북도]
 	
-	// 각 지역과 지역의 위도 경도 map 에 넣기.
+	// 각 지역과 지역의 x, y 좌표를 map 에 넣기.
 	ArrayList<String> cityLoc;
 	for (int i = 0; i < city.size(); i++) {
 		System.out.println(city.get(i));
@@ -45,31 +54,16 @@
 	
 	System.out.println(cityInform);
 	
-	for (int i = 0; i < city.size(); i++) {
-		ArrayList<String> latAndlon = cityInform.get(city.get(i));  // 지역 키 값 뽑아 와서 위경도 담기
-		/* System.out.println(latAndlon); */
-		
-		double lat = Double.parseDouble(latAndlon.get(0));  // 위도와 
-		double lon = Double.parseDouble(latAndlon.get(1));  // 경도를 따로 저장해서 
-		
-		GpsTransfer gps = new GpsTransfer(lat, lon);  // 위경도 -> x,y 좌표 변경해 준다. 
-		
-		gps.transfer(gps, 0);  // 변경 
-		
-		int latitude = (int)Math.round(gps.getxLat());  // 변경한 값들을 반올림 해 주고 
-		int longitude = (int)Math.round(gps.getyLon());
-		
-		String xLat = Integer.toString(latitude);  // 다시 String 형으로 묶어준 다음 
-		String yLon = Integer.toString(longitude);
-		latAndlon.set(0, xLat);
-		latAndlon.set(1, yLon);  // 좌표값으로 변경된 것으로 리스트 수정.
-		
-		cityInform.put(city.get(i), latAndlon);  // 해쉬 맵도 수정 
-	}
-	
 	WeatherAPI api = new WeatherAPI();  // API 
 	
 	out.println("<div class=\"container\">");
+	
+	out.println("<div class=\"card float-end\" style=\"width: 18rem;\">" +
+			  "<div class=\"card-body\">" +
+			    "<h5 class=\"card-title\">상세한 날씨 정보를 알고 싶다면!</h5>" +
+			    "<p class=\"card-text\">로그인을 하여 현재 내 지역의 날씨 정보를 알아보세요. 참고로 강수 형태는 비, 눈, 우박 등의 현상의 정보를 나타내는 것입니다.</p>" +
+			  "</div>" +
+			"</div>");
 	
 	for (int i = 0; i < city.size(); i++) {		
 		ArrayList<String> latAndlon = cityInform.get(city.get(i));  // 지역 키 값 뽑아 와서 x, y 좌표 담기
@@ -77,9 +71,6 @@
 		String yLon = latAndlon.get(1);
 		
 		api.getAPI(xLat, yLon);
-		
-		/* String t1h = api.category.get(3);
-		String pty0 = api.category.get(0); */
 		
 		 // 0번째에는 category, 1번째에는 value
 		ArrayList T1H = new ArrayList();
@@ -132,9 +123,12 @@
 	
 	}
 	
+	
 	out.println("</div>");
 	
 %>
+
+
 
 
  

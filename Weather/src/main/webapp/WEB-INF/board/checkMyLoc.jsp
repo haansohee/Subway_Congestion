@@ -33,7 +33,7 @@
 	/* String month = "3"; */
 	
 	LocalTime now = LocalTime.now();
-	int hour = now.getHour();
+	int hour = now.getHour() - 1;
 	
 	String today = sdf.format(date);
 	String userName = mDAO.findUserName(userID);
@@ -49,14 +49,9 @@
 	double lon = Double.parseDouble(cityLoc.get(1));
 	
 	WeatherAPI api = new WeatherAPI();  // API 
-	GpsTransfer gps = new GpsTransfer(lat, lon);  // 위경도 -> x,y 좌표 
 	
-	gps.transfer(gps, 0);
-	int latitude = (int)Math.round(gps.getxLat());
-	int longitude = (int)Math.round(gps.getyLon());
-	
-	String xLat = Integer.toString(latitude);
-	String yLon = Integer.toString(longitude);
+	String xLat = cityLoc.get(0);
+	String yLon = cityLoc.get(1);
 	
 	api.getAPI(xLat, yLon);
 	/* api.getAPI(xLat, yLon); */
@@ -183,7 +178,7 @@
   		<img src=<%=imgSrc %> class="card-img" alt="..." style = "height:100px; object-fit:cover;"/>
   			<div class="d-inline card-img-overlay">
     		<h5 class="card-title"> <%= userCity %></h5>
-    			<p class="card-text"><%=today %> &nbsp; <%= hour %>:00 KST 기준 <%= T1H.get(1) %> ℃</p>
+    			<p class="card-text"><%=today %> &nbsp; <%= hour %>:40 KST 기준 <%= T1H.get(1) %> ℃</p>
   			</div>
 	</div>	
 <!-- 	
