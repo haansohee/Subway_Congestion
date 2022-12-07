@@ -50,7 +50,7 @@
 
 <body>
 
-<h3 style = "text-align:center; margin-top:10px;"> Join the (플젝이름) </h3>
+<h3 style = "text-align:center; margin-top:10px;"> Join the Weather Information </h3>
 <div class="container" style="margin-top:5em;">
 <div class="col align-self-center">
 

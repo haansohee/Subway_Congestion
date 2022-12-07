@@ -30,7 +30,7 @@
 	SimpleDateFormat sdf2 = new SimpleDateFormat("M");
 	
 	String month = sdf2.format(date);  // 현재 무슨 계절인지 확인할 변수 month
-	/* String month = "3"; */
+	/* String month = "10"; */
 	
 	LocalTime now = LocalTime.now();
 	int hour = now.getHour() - 1;

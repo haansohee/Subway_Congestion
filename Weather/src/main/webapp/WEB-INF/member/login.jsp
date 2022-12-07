@@ -26,7 +26,7 @@
 		}
 	}
 </script>
-<h3 style = "text-align:center; margin-top:10px;"> Login the (플젝이름) </h3>
+<h3 style = "text-align:center; margin-top:10px;"> Login the Weather Information </h3>
 <div class="container" style="margin-top: 5em;">
 <form name = "frm" action="login.do" method="post" onsubmit="return checkValue()" >
   <div class="row mb-3">

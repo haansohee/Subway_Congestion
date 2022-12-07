@@ -12,6 +12,12 @@
 </head>
 <body>
 
+<script type="text/javascript">	
+	function logout() {
+		alert("로그아웃이 되었습니다.");
+	}
+</script>
+
 <%
 MemberDTO mDTO = new MemberDTO();
 MemberDAO mDAO = MemberDAO.getInstance();
@@ -47,7 +53,7 @@ System.out.println(mDTO.getUserID());
         <a class="nav-link" href="join.do">Join</a>
 <%	} else {
 %>		
-		<a class="nav-link" href="logout.do">Logout</a>
+		<a class="nav-link" href="logout.do" onclick = "logout()">Logout</a>
 		<a class="nav-link disabled"> <%= userName %> 님, 안녕하세요. </a>
 <% } %>
         <a class="nav-link disabled"> :) </a>
