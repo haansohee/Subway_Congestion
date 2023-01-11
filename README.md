@@ -6,4 +6,13 @@
 
 <br>
 
+## 구현
+#### 1. 로그인 및 로그아웃
+#### 2. 회원가입
+#### 3. API를 활용한 날씨 정보 제공
+
+<br>
+
 <a href = "https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084"> API </a>
+
+
