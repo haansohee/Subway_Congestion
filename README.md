@@ -31,3 +31,13 @@
 <b> MVC2 </b> <br>
 
 <img width="808" alt="image" src="https://user-images.githubusercontent.com/90755590/214069249-8cc80fdb-0b7a-4198-80e1-6f118834af16.png">
+
+<br>
+
+## 간략한 실행 화면
+<img width="693" alt="image" src="https://user-images.githubusercontent.com/90755590/214069881-7e82d8c5-b70d-4724-9a40-974f1bca0f3a.png">
+<br>
+<img width="668" alt="image" src="https://user-images.githubusercontent.com/90755590/214069835-3375511d-e79a-40e3-985e-27907a208c7a.png">
+<br>
+<img width="612" alt="image" src="https://user-images.githubusercontent.com/90755590/214069958-124e1c6f-d38f-4cd6-9e4f-70a12139ec5d.png">
+
