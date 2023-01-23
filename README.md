@@ -16,3 +16,18 @@
 <a href = "https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15084084"> API </a>
 
 
+<br>
+
+## 개발 환경
+
+💻 Apple M1 Pro, 16GB <br>
+
+<hr>
+
+🌎 Eclipse, Apache Tomcat v9.0, java 18
+
+<br>
+
+<b> MVC2 </b> <br>
+
+<img width="808" alt="image" src="https://user-images.githubusercontent.com/90755590/214069249-8cc80fdb-0b7a-4198-80e1-6f118834af16.png">
