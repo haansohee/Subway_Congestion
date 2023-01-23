@@ -24,7 +24,7 @@
 
 <hr>
 
-🌎 Eclipse, Apache Tomcat v9.0, java 18
+🌎 Eclipse, Apache Tomcat v9.0, java 18, MySQL
 
 <br>
 
